@@ -41,7 +41,16 @@ def create_complaints():
         db.session.commit()
         return render_template('front-page.html')
 
+@app.route('/data')
+def all_complaints():
+    lst_of_complaints = Complaints.query.all()
+    if lst_of_complaints:
+        return render_template('display-entries.html', )
 
+@app.route('/test')
+def testing_stuff():
+    if request.method == 'GET':
+        return render_template('some.html')
 
 # For Heroku
 def getApp():
