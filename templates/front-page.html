@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UCI</title>
+</head>
+<body>
+    <div class="container">
+        <h1>UCI</h1>
+        <br>
+        <form action='' method = "POST">
+            <p>Aadhar ID <input type = "integer" name = "aadhar_id" /></p>
+            <p>Name <input type = "text" name = "name" /></p>
+            <p>Phone No. <input type = "integer" name = "phoneno" /></p>
+            <p>Address <input type = "text" name = "address" /></p>
+            <p>Postal Code <input type = "integer" name = "postal_code" /></p>
+            <p>Complaint Type <select name="complaint_type" id="cars">
+                <option value="volvo">Volvo</option>
+                <option value="saab">Saab</option>
+                <option value="mercedes">Mercedes</option>
+                <option value="audi">Audi</option>
+            </select></p>
+            <p>Complaint 
+                <textarea rows = "5" cols = "60" name = "complaint_text">Enter details here...
+                </textarea><br>
+            </p>
+            <p><input type = "submit" value = "Submit" /></p>
+        </form>
+    </div>
+</body>
+</html>

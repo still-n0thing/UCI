@@ -4,9 +4,13 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Test</title>
+    <title>{% block title %}{% endblock %}</title>
 </head>
 <body>
-    <h1>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis sint modi aliquam, eaque omnis repudiandae nostrum cupiditate facilis ipsum minus, reiciendis labore eum obcaecati delectus earum. At esse repellat quia voluptas tempore. Repellendus, sit. Culpa, nobis deleniti ipsam labore magnam sequi saepe vero recusandae ratione voluptate. Esse provident suscipit maxime?</h1>
+    <div class="container">
+        <h1>Some text</h1>
+        <br>
+        { block content }{ endblock }
+    </div>
 </body>
 </html>
