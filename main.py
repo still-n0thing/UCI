@@ -1,4 +1,3 @@
-from mimetypes import common_types
 from flask import Flask, render_template, request, redirect, abort
 from models import db, Complaints
 
@@ -12,6 +11,7 @@ db.init_app(app)
 def create_table():
     db.create_all()
 
+# Working
 @app.route('/', methods = ["GET", "POST"])
 def create_complaints():
     
@@ -41,12 +41,14 @@ def create_complaints():
         db.session.commit()
         return render_template('front-page.html')
 
-@app.route('/data')
+# Working 
+@app.route('/list')
 def all_complaints():
     lst_of_complaints = Complaints.query.all()
     if lst_of_complaints:
-        return render_template('display-entries.html', )
+        return render_template('display-entries.html', lst_of_complaints=lst_of_complaints)
 
+# For testing only
 @app.route('/test')
 def testing_stuff():
     if request.method == 'GET':
