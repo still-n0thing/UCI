@@ -142,6 +142,11 @@
 
 
 <!-- Error for worng password-->
+{% if complaint_data %}
+<div class="alert alert-info alert-dismissible fade show mt-5" role="alert">
+    Complaint sent succesfully ! Copy the Reference ID here: {{complaint_data.id}} 
+</div>
+{% endif %}
 
         </div>
     </div>

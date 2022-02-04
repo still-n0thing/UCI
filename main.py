@@ -39,7 +39,10 @@ def create_complaints():
         # print(complaint)
         db.session.add(complaint)
         db.session.commit()
-        return render_template('index.html')
+        obj = db.session.query(Complaints).order_by(Complaints.id.desc()).first()
+        # working on this 
+        # print(obj) # returned as a tuple
+        return render_template('index.html', complaint_data = complaint)
 
 # Working 
 @app.route('/list')
