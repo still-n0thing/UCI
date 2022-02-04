@@ -4,13 +4,14 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
     <title>UCI</title>
 </head>
 <body>
     <div class="container">
         <h1>UCI</h1>
         <br>
-        <form action='' method = "POST">
+        <form action='/' method = "POST">
             <p>Aadhar ID <input type = "integer" name = "aadhar_id" /></p>
             <p>Name <input type = "text" name = "name" /></p>
             <p>Phone No. <input type = "integer" name = "phoneno" /></p>
@@ -23,7 +24,7 @@
                 <option value="audi">Audi</option>
             </select></p>
             <p>Complaint 
-                <textarea rows = "5" cols = "60" name = "complaint_text">Enter details here...
+                <textarea name = "complaint_text">Enter details here...
                 </textarea><br>
             </p>
             <p><input type = "submit" value = "Submit" /></p>

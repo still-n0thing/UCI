@@ -3,13 +3,19 @@ from models import db, Complaints
 
 app = Flask(__name__)
 
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///data.db'
+db_file_name = "data.db"
+app.config['SQLALCHEMY_DATABASE_URI'] = f'sqlite:///{db_file_name}'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db.init_app(app)
 
+# TODO: need to add session ref = https://www.geeksforgeeks.org/how-to-use-flask-session-in-python-flask/ for login page 
+
+# setup so that database is created 
 @app.before_first_request
 def create_table():
-    db.create_all()
+    import os
+    if not os.path.exists(db_file_name): 
+        db.create_all()
 
 # Working
 @app.route('/', methods = ["GET", "POST"])
@@ -48,15 +54,27 @@ def all_complaints():
     if lst_of_complaints:
         return render_template('display-entries.html', lst_of_complaints=lst_of_complaints)
 
-# For testing only
-@app.route('/test')
+# TODO: index, login, feedback need to routed, POST request needs to handled and html need editing
+@app.route('/index')
 def testing_stuff():
-    if request.method == 'GET':
-        return render_template('some.html')
+    if request.method == "GET":
+        # return render_template('some.html')
+        return render_template('index.html')
+
+@app.route('/login')
+def login_page():
+    if request.method == "GET":
+        return render_template('login.html')
+
+@app.route('/feedback')
+def feedback_page():
+    if request.method == "GET":
+        return render_template('feedback.html')
 
 # For Heroku
 def getApp():
     return app
 
-# Need to be configured before hosting
-app.run(host='localhost', port=5000)
+# No need to change this before the deployment
+if __name__ == "__main__":
+    app.run(debug=True)
