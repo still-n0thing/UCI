@@ -27,25 +27,19 @@ def create_complaints():
     # Debug Section
 
     if request.method == "GET":
-        return render_template('front-page.html')
+        return render_template('index.html')
 
     if request.method == "POST":
-        aadhar_id = request.form['aadhar_id']
-        name = request.form['name']
-        phoneno = request.form['phoneno']
-        address = request.form['address']
-        postal_code = request.form['postal_code']
-        complaint_type = request.form['complaint_type']
-        complaint_text =  request.form['complaint_text']
+        citizenship = request.form['citizenship']
+        category = request.form['category']
+        description = request.form['description']
         complaint = Complaints(
-            aadhar_id=aadhar_id, name=name, phoneno=phoneno, 
-            address=address, postal_code=postal_code,
-            complaint_type=complaint_type, complaint_text=complaint_text
+            citizenship = citizenship, category = category, description = description 
         )
         # print(complaint)
         db.session.add(complaint)
         db.session.commit()
-        return render_template('front-page.html')
+        return render_template('index.html')
 
 # Working 
 @app.route('/list')
@@ -53,23 +47,6 @@ def all_complaints():
     lst_of_complaints = Complaints.query.all()
     if lst_of_complaints:
         return render_template('display-entries.html', lst_of_complaints=lst_of_complaints)
-
-# TODO: index, login, feedback need to routed, POST request needs to handled and html need editing
-@app.route('/index')
-def testing_stuff():
-    if request.method == "GET":
-        # return render_template('some.html')
-        return render_template('index.html')
-
-@app.route('/login')
-def login_page():
-    if request.method == "GET":
-        return render_template('login.html')
-
-@app.route('/feedback')
-def feedback_page():
-    if request.method == "GET":
-        return render_template('feedback.html')
 
 # For Heroku
 def getApp():
