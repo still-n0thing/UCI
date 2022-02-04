@@ -44,6 +44,16 @@ def create_complaints():
         # print(obj) # returned as a tuple
         return render_template('index.html', complaint_data = complaint)
 
+@app.route('/feedback', methods = ["GET", "POST"])
+def feedback():
+    if request.method == "GET":
+        return render_template('feedback.html')
+
+@app.route('/login', methods = ["GET", "POST"])
+def login():
+    if request.method == "GET":
+        return render_template('login.html')
+
 # Working 
 @app.route('/list')
 def all_complaints():
