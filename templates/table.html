@@ -115,7 +115,7 @@
                 <td style="column-width: 500px;">
                     
                  <select name="status">
-                    <option value="none" selected disabled hidden>{{ obj.to_display[complaint_item.status] }}</option>
+                    <option value="{{ obj.to_display[complaint_item.status] }}" selected disabled hidden>{{ obj.to_display[complaint_item.status] }}</option>
                    <option value="Pending"> Pending </option>
                    <option value="InProgress"> In Progress </option>
                    <option value="Finished"> Finished </option>

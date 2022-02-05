@@ -116,7 +116,7 @@ def feedback():
             0 : "Your Complaint was rejected please try again with correct information",
             1 : "Your Complaint is yet to be approved",
             2 : "We are working on your Complaint",
-            3 : "Work on your Compaint is finsied"
+            3 : "Work on your Compaint is finished"
         }
         if obj != None:
             return render_template('feedback.html', data = {
@@ -189,13 +189,14 @@ def table(category):
         "Security": Security,
         "Others": Others
     }
+    
     in_expression = all_types[category].status.in_([1, 2, 3])
     lst_of_complaints = db.session.query(all_types[category]).filter(in_expression)
 
     opt = [
         "Rejected",
         "Pending",
-        "In Progress",
+        "InProgress",
         "Finished"
     ]
 
