@@ -8,8 +8,6 @@ app.config['SQLALCHEMY_DATABASE_URI'] = f'sqlite:///{db_file_name}'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db.init_app(app)
 
-# TODO: need to add session ref = https://www.geeksforgeeks.org/how-to-use-flask-session-in-python-flask/ for login page 
-
 # setup so that database is created 
 @app.before_first_request
 def create_table():
@@ -189,7 +187,7 @@ def table(category):
         "Security": Security,
         "Others": Others
     }
-    
+
     in_expression = all_types[category].status.in_([1, 2, 3])
     lst_of_complaints = db.session.query(all_types[category]).filter(in_expression)
 
