@@ -1,4 +1,3 @@
-from unicodedata import category
 from flask import Flask, render_template, request, redirect, abort
 from models import Agriculture, DrinkingWater, Electricity, Health, Others, Security, Transportation, db, Complaints
 
@@ -112,7 +111,7 @@ def feedback():
         elif obj == "Others":
             obj = db.session.query(Others).filter(Others.id == comp_id).first()
 
-        # print(obj)
+        # STATUS (num : meaning)
         dt = { 
             0 : "Your Complaint was rejected please try again with correct information",
             1 : "Your Complaint is yet to be approved",
@@ -141,7 +140,7 @@ def login():
         },
         "drinkingwater@gov.in":{
             "password" : "password",
-            "type" : "Drinking Water"
+            "type" : "DrinkingWater"
         },
         "electricity@gov.in":{
             "password" : "password",
@@ -173,19 +172,98 @@ def login():
                 category = admins_db[email.lower()]['type']
 
         if category != None:
-            print("Login Sucess")
-            return render_template('login.html')
+            # print("Login Sucess")
+            return redirect(f'/table/{category}')
         else:
-            print("Login Failed")
+            # print("Login Failed")
             return render_template('login.html')
 
+@app.route('/table/<string:category>', methods = ["GET", "POST"])
+def table(category):
+    all_types = {
+        "Transportation" : Transportation,
+        "Agriculture" : Agriculture,
+        "DrinkingWater" : DrinkingWater,
+        "Electricity": Electricity,
+        "Health": Health,
+        "Security": Security,
+        "Others": Others
+    }
+    in_expression = all_types[category].status.in_([1, 2, 3])
+    lst_of_complaints = db.session.query(all_types[category]).filter(in_expression)
+
+    opt = [
+        "Rejected",
+        "Pending",
+        "In Progress",
+        "Finished"
+    ]
+
+    if lst_of_complaints:
+        nm = ""
+        if category == "DrinkingWater":
+            nm = "Drinking Water"
+        else:
+            nm = category
+        return render_template('table.html', obj = {
+            "data" : lst_of_complaints,
+            "to_display": opt,
+            "page_name" : nm,
+            "page_id" : category
+        })
+
+
+@app.route('/table/<string:category>/<int:id>', methods = ["POST", "GET"])
+def update_status(category, id):
+    all_types = {
+        "Transportation" : Transportation,
+        "Agriculture" : Agriculture,
+        "DrinkingWater" : DrinkingWater,
+        "Electricity": Electricity,
+        "Health": Health,
+        "Security": Security,
+        "Others": Others
+    }
+
+    opt = {
+        "Rejected" : 0,
+        "Pending" : 1,
+        "InProgress" : 2,
+        "Finished" : 3,
+    }
+
+    if request.method == "POST":
+        status = request.form["status"]
+        changing_row = all_types[category].query.get_or_404(id)
+        changing_row.status = opt[status]
+
+        try:
+            db.session.commit()
+            return redirect(f'/table/{category}')
+        except:
+            return 'There is some issus'
+
+    else:
+        return redirect(f'/table/{category}')
 
 # Working 
 @app.route('/list')
 def all_complaints():
-    lst_of_complaints = Complaints.query.all()
+    lst_of_complaints = Transportation.query.all()
+    # users = Transportation.query.all()
+
+    opt = [
+        "Rejected",
+        "Pending",
+        "In Progress",
+        "Finished"
+    ]
+    print(lst_of_complaints)
     if lst_of_complaints:
-        return render_template('display-entries.html', lst_of_complaints=lst_of_complaints)
+        return render_template('table.html', obj = {
+            "data" : lst_of_complaints,
+            "to_display": opt
+        })
 
 
 # For Heroku
