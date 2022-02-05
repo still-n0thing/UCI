@@ -113,10 +113,10 @@ def feedback():
 
         # STATUS (num : meaning)
         dt = { 
-            0 : "Your Complaint was rejected please try again with correct information",
-            1 : "Your Complaint is yet to be approved",
-            2 : "We are working on your Complaint",
-            3 : "Work on your Compaint is finished"
+            0 : "Complaint rejected, please enter correct credentials",
+            1 : "Your complaint is yet to be approved",
+            2 : "We are working on your complaint",
+            3 : "Your complaint has been resolved"
         }
         if obj != None:
             return render_template('feedback.html', data = {
