@@ -1,0 +1,7 @@
+{% extends 'base.html' %}
+
+{% block content %}    
+    {% for complaint_item in lst_of_complaints %}
+    <h3>{{ complaint_item }}</h3><hr>
+    {% endfor %}
+{% endblock %}

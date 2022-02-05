@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Unified Complaint Interface | UCI</title>
+
+    <!--Normalise CSS-->
+    <link rel="stylesheet" type="text/css" href="/libs/normalize.css" />
+
+    <!-- Font Awesome -->
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"
+    />
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Hind&display=swap" rel="stylesheet">
+
+    <!-- Bootstrap core CSS -->
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+
+    <!-- Material Design Bootstrap -->
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/css/mdb.min.css"
+      rel="stylesheet"
+    />
+
+    <!--Style css-->
+    <link
+      rel="stylesheet"
+      type="text/css"
+      media="screen"
+      href="style.css"
+    />
+
+    <link rel="stylesheet" href="users.css" />
+
+    <!--Media Query -->
+    <link rel="stylesheet" type="text/css" href="responsive.css" />
+  </head>
+
+  <body>
+    <div class="loader"></div>
+  </body>
+</html>
+
+
+<div class="container my-4">
+    <nav class="navbar navbar-dark primary-color">
+        <a class="navbar-brand" href="/"> <b>Unified Complaint Interface | UCI </b></a>
+
+                <span id="logout-btn" class="navbar-text white-text my-0 mr-4">
+                <a href="{{ url_for('login') }}"><b>Login </b></a>
+            </span>
+
+    </nav>
+
+    <hr class="my-5">
+
+</div>
+
+
+
+<section id="home-page">
+    <div class="container">
+        <ul class="nav nav-tabs" id="myTab" role="tablist">
+            <li class="nav-item">
+                <a class="nav-link active" id="complaint-tab" data-toggle="tab" href="#complaint" role="tab"
+                    aria-controls="complaint" aria-selected="true"> <i class="fa fa-id-card" aria-hidden="true"></i><b>  Complaints</b></a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" id="feedback-tab" href="{{ url_for('feedback') }}" role="tab" aria-controls="complaints"
+                    aria-selected="false">
+                    <i class="fas fa-envelope-open-text"></i>
+                    <b>Feedback</b></a>
+            </li>
+        </ul>
+
+
+        <div class="tab-content" id="myTabContent">
+            <div class="tab-pane fade show active" id="complaint" role="tabpanel" aria-labelledby="complaint-tab">
+                <div class="container py-5">
+    <div class="row">
+        <div class="col-md-6">
+            <form action="/" method="post">
+
+                <div class="form-group">
+                    <label for="citizenship"><b>Aadhar Card Number</b></label>
+                    <input type="text" name="citizenship" id="citizenship" class="form-control" value="" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="category"><b>Choose Category</b></label>
+                    <select name="category" class="browser-default custom-select" required>
+                        <option value="Transportation">Transportation</option>
+                        <option value="Agriculture">Agriculture</option>
+                        <option value="Drinking Water">Drinking Water</option>
+                        <option value="Electricity">Electricity</option>
+                        <option value="Health">Health</option>
+                        <option value="Security">Security</option>
+                        <option value="Others">Others</option>
+
+                    </select>
+                </div>
+
+                <div class="form-group mt-3">
+                    <label for="description"><b>Enter complaint</b></label>
+                    <textarea name="description" class="form-control" id="description" rows="5" required></textarea>
+                </div>
+
+                <button type="submit" class="btn btn-primary btn-block"><b>Send Complaint</b></button>
+            </form>
+
+        </div>
+
+
+        <div class="col-md-6" id="home-instruction">
+                <div class="card">
+                        <h4 class="card-header"><a><b>How To Use ?</b></a></h4>
+                        <div class="card-body">
+                            Type complaint in the field aside. You will then receive a reference ID. Copy that ID and it can be used in the status tab for getting complaint status.
+
+                            <hr>
+
+                        </div>
+                </div>
+                <!-- Joi validation message template -->
+
+
+
+<!-- Success message template for flash message -->
+
+
+
+
+
+
+<!-- Error for worng password-->
+{% if complaint_data %}
+<div class="alert alert-info alert-dismissible fade show mt-5" role="alert">
+    Complaint sent succesfully ! Copy the Reference ID here: {{complaint_data.id}} 
+</div>
+{% endif %}
+
+        </div>
+    </div>
+</div>
+            </div>
+
+
+        </div>
+    </div>
+
+</section>
+
+
+
+
+
+
+
+
+  <!--Jquery JS-->
+  <!-- <script src="/libs/jquery-3.3.1.min.js"></script> -->
+
+
+  <!--Bootstrap JS-->
+  <!-- <script src="/libs/bootstrap.min.js"></script> -->
+
+  <!-- MDB core JavaScript -->
+  <!-- <script type="text/javascript" src="/libs/mdb.min.js"></script> -->
+
+
+  <!--Popper JS-->
+  <!-- <script src="/libs/popper.min.js"></script> -->
+
+  <!-- JQuery -->
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+  <!-- Bootstrap tooltips -->
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
+
+  <!-- Bootstrap core JavaScript -->
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/js/bootstrap.min.js"></script>
+
+  <!-- MDB core JavaScript -->
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/js/mdb.min.js"></script>
+
+  <!--Custom JS -->
+  <!-- <script src="/assets/js/custom.js"></script> -->
+
+  </body>
+
+  </html>

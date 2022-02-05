@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Unified Complaint Interface | UCI</title>
+
+    <!--Normalise CSS-->
+    <link rel="stylesheet" type="text/css" href="/libs/normalize.css" />
+
+    <!-- Font Awesome -->
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"
+    />
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Hind&display=swap" rel="stylesheet">
+
+    <!-- Bootstrap core CSS -->
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+
+    <!-- Material Design Bootstrap -->
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/css/mdb.min.css"
+      rel="stylesheet"
+    />
+
+    <!--Style css-->
+    <link
+      rel="stylesheet"
+      type="text/css"
+      media="screen"
+      href="/assets/css/style.css"
+    />
+
+    <link rel="stylesheet" href="/assets/css/users.css" />
+
+    <!--Media Query -->
+    <link rel="stylesheet" type="text/css" href="/assets/css/responsive.css" />
+  </head>
+
+  <body>
+    <div class="loader"></div>
+  </body>
+</html>
+
+
+<div class="container my-4">
+    <nav class="navbar navbar-dark primary-color">
+        <a class="navbar-brand" href="/"><b>Unified Complaint Interface | UCI</b></a>
+
+                <span id="logout-btn" class="navbar-text white-text my-0 mr-4">
+                <a href="{{ url_for('login') }}"><b>Login</b></a>
+            </span>
+
+    </nav>
+
+    <hr class="my-5">
+
+</div>
+
+
+<div class="container">
+
+<div class="row">
+    <div class="col-md-6 text-center">
+        <div class="container">
+
+            <div class="card">
+                <div class="card-header"> <i class="fas fa-user-plus"></i> Login </div>
+
+
+                <div class="card-body">
+                    <form action="/users/login" method="POST">
+
+                        <div class="form-group">
+                            <input type="email" placeholder="Enter email.." name="email" class="form-control" required />
+                        </div>
+
+                        <div class="form-group">
+                            <input type="password" name="password" placeholder="Password" class="form-control"
+                                required />
+                        </div>
+
+
+                        <button class="btn btn-primary btn-block" type="submit"><b>Login</b></button>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- Joi validation message template -->
+
+
+
+<!-- Success message template for flash message -->
+
+
+
+
+
+
+<!-- Error for worng password-->
+
+    </div>
+
+
+    <div class="col-md-4" id="login-instruction">
+        <div class="card">
+            <div class="card-header text-danger">
+                <i class="fas fa-exclamation-triangle"></i><b> Authorised Staff Only</b>
+            </div>
+            <div class="card-body">
+                Please provide correct email and password to login as staff system administrator.
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+</div>
+
+
+
+
+
+
+
+
+<br><br><br><br><br><br><br>
+
+
+
+  <!--Jquery JS-->
+  <!-- <script src="/libs/jquery-3.3.1.min.js"></script> -->
+
+
+  <!--Bootstrap JS-->
+  <!-- <script src="/libs/bootstrap.min.js"></script> -->
+
+  <!-- MDB core JavaScript -->
+  <!-- <script type="text/javascript" src="/libs/mdb.min.js"></script> -->
+
+
+  <!--Popper JS-->
+  <!-- <script src="/libs/popper.min.js"></script> -->
+
+  <!-- JQuery -->
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+  <!-- Bootstrap tooltips -->
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
+
+  <!-- Bootstrap core JavaScript -->
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/js/bootstrap.min.js"></script>
+
+  <!-- MDB core JavaScript -->
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/js/mdb.min.js"></script>
+
+  <!--Custom JS -->
+  <script src="/assets/js/custom.js"></script>
+
+  </body>
+
+  </html>
