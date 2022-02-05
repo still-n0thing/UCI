@@ -52,10 +52,10 @@
 
 <div class="container my-4">
     <nav class="navbar navbar-dark primary-color">
-        <a class="navbar-brand" href="/">Unified Complaint Interface | UCI</a>
+        <a class="navbar-brand" href="/"><b>Unified Complaint Interface | UCI</b></a>
 
                 <span id="logout-btn" class="navbar-text white-text my-0 mr-4">
-                <a href="{{ url_for('login') }}">Login</a>
+                <a href="{{ url_for('login') }}"><b>Login</b></a>
             </span>
 
     </nav>
@@ -71,14 +71,14 @@
   <ul class="nav nav-tabs" id="myTab" role="tablist">
     <li class="nav-item">
       <a class="nav-link" id="home-tab" href="/" role="tab" aria-controls="home" aria-selected="true">
-        <i class="fa fa-id-card" aria-hidden="true"></i> Complaints</a>
+        <i class="fa fa-id-card" aria-hidden="true"></i><b> Complaints</b></a>
     </li>
 
     <li class="nav-item">
       <a class="nav-link active" id="feedback-tab" data-toggle="tab" href="#feedback" role="tab"
         aria-controls="feedback" aria-selected="true">
         <i class="fas fa-envelope-open-text"></i>
-        Feedback</a>
+        <b>Feedback</b></a>
     </li>
   </ul>
 
@@ -89,7 +89,7 @@
 
       <div class="row py-5">
         <div class="col-md-6">
-          <h5 class="text-dark mb-4">Type or Paste Reference ID into field to get feedback : </h5>
+          <h6 class="text-dark mb-4"><b>Enter the Reference ID to get status: </b></h6>
 
           <form action="{{ url_for('feedback') }}" method="POST">
             <div class="form-group">
@@ -97,7 +97,7 @@
                 required>
             </div>
 
-            <button type="submit" class="btn btn-primary btn-block mb-2">Confirm identity</button>
+            <button type="submit" class="btn btn-primary btn-block mb-2"><b>Confirm identity</b></button>
 
           </form>
         </div>
