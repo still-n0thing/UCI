@@ -77,7 +77,7 @@
 
 
                 <div class="card-body">
-                    <form action="/users/login" method="POST">
+                    <form action="{{ url_for('login') }}" method="POST">
 
                         <div class="form-group">
                             <input type="email" placeholder="Enter email.." name="email" class="form-control" required />

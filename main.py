@@ -1,5 +1,6 @@
+from unicodedata import category
 from flask import Flask, render_template, request, redirect, abort
-from models import db, Complaints
+from models import Agriculture, DrinkingWater, Electricity, Health, Others, Security, Transportation, db, Complaints
 
 app = Flask(__name__)
 
@@ -37,22 +38,147 @@ def create_complaints():
             citizenship = citizenship, category = category, description = description 
         )
         # print(complaint)
+
         db.session.add(complaint)
         db.session.commit()
         obj = db.session.query(Complaints).order_by(Complaints.id.desc()).first()
         # working on this 
+
+
+        # Checking which table should this data be stored
+
         # print(obj) # returned as a tuple
+        # print(type(obj))
+        if category == "Transportation":
+            comp_tb = Transportation(id = obj.id, citizenship= obj.citizenship, description = obj.description)
+            db.session.add(comp_tb)
+            db.session.commit()
+        elif category == "Agriculture":
+            comp_tb = Agriculture(id = obj.id, citizenship= obj.citizenship, description = obj.description)
+            db.session.add(comp_tb)
+            db.session.commit()
+        elif category == "Drinking Water":
+            comp_tb = DrinkingWater(id = obj.id, citizenship= obj.citizenship, description = obj.description)
+            db.session.add(comp_tb)
+            db.session.commit()
+        elif category == "Electricity":
+            comp_tb = Electricity(id = obj.id, citizenship= obj.citizenship, description = obj.description)
+            db.session.add(comp_tb)
+            db.session.commit()
+        elif category == "Health":
+            comp_tb = Health(id = obj.id, citizenship= obj.citizenship, description = obj.description)
+            db.session.add(comp_tb)
+            db.session.commit()
+        elif category == "Security":
+            comp_tb = Security(id = obj.id, citizenship= obj.citizenship, description = obj.description)
+            db.session.add(comp_tb)
+            db.session.commit()
+        else:
+            comp_tb = Others(id = obj.id, citizenship= obj.citizenship, description = obj.description)
+            db.session.add(comp_tb)
+            db.session.commit()
+
         return render_template('index.html', complaint_data = complaint)
 
 @app.route('/feedback', methods = ["GET", "POST"])
 def feedback():
     if request.method == "GET":
         return render_template('feedback.html')
+    
+    if request.method == "POST":
+        comp_id = request.form["complaintId"]
+        comp_id = int(comp_id)
+        comp_obj = db.session.query(Complaints).filter(Complaints.id == comp_id).first()
+        # print(db.session.query(Complaints).filter(Complaints.id == comp_id).first())
+        category = None
+        if comp_obj != None:
+            category = comp_obj.category
+        # print(comp_id)
+        # print(category)
+
+        obj = None
+        if category == "Transportation":
+            obj = db.session.query(Transportation).filter(Transportation.id == comp_id).first()         
+        elif category == "Agriculture":
+            obj = db.session.query(Agriculture).filter(Agriculture.id == comp_id).first()
+        elif category == "Drinking Water":
+            obj = db.session.query(DrinkingWater).filter(DrinkingWater.id == comp_id).first()
+        elif category == "Electricity":
+            obj = db.session.query(Electricity).filter(Electricity.id == comp_id).first()
+        elif category == "Health":
+            obj = db.session.query(Health).filter(Health.id == comp_id).first()
+        elif category == "Security":
+            obj = db.session.query(Security).filter(Security.id == comp_id).first()
+        elif obj == "Others":
+            obj = db.session.query(Others).filter(Others.id == comp_id).first()
+
+        # print(obj)
+        dt = { 
+            0 : "Your Complaint was rejected please try again with correct information",
+            1 : "Your Complaint is yet to be approved",
+            2 : "We are working on your Complaint",
+            3 : "Work on your Compaint is finsied"
+        }
+        if obj != None:
+            return render_template('feedback.html', data = {
+                "to_display" : dt[obj.status]
+            })
+        else:
+            return render_template('feedback.html', data = {
+                "to_display": "Invalid Reference ID"
+            })
 
 @app.route('/login', methods = ["GET", "POST"])
 def login():
+    admins_db = {
+        "transportation@gov.in":{
+            "password" : "password",
+            "type" : "Transportation"
+        },
+        "agriculture@gov.in":{
+            "password" : "password",
+            "type" : "Agriculture"
+        },
+        "drinkingwater@gov.in":{
+            "password" : "password",
+            "type" : "Drinking Water"
+        },
+        "electricity@gov.in":{
+            "password" : "password",
+            "type" : "Electricity"
+        },
+        "health@gov.in":{
+            "password" : "password",
+            "type" : "Health"
+        },
+        "security@gov.in":{
+            "password" : "password",
+            "type" : "Security"
+        },
+        "others@gov.in":{
+            "password" : "password",
+            "type" : "Others"
+        }
+    }
+
     if request.method == "GET":
         return render_template('login.html')
+    
+    if request.method == "POST":
+        email = request.form['email']
+        password = request.form['password']
+        category = None
+        if email.lower() in admins_db:
+            if password == admins_db[email.lower()]['password']:
+                category = admins_db[email.lower()]['type']
+
+        if category != None:
+            print("Login Sucess")
+            return render_template('login.html')
+        else:
+            print("Login Failed")
+            return render_template('login.html')
+
 
 # Working 
 @app.route('/list')
@@ -60,6 +186,7 @@ def all_complaints():
     lst_of_complaints = Complaints.query.all()
     if lst_of_complaints:
         return render_template('display-entries.html', lst_of_complaints=lst_of_complaints)
+
 
 # For Heroku
 def getApp():

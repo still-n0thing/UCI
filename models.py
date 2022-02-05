@@ -1,5 +1,3 @@
-from enum import unique
-from unicodedata import category
 from flask_sqlalchemy import SQLAlchemy
 
 db = SQLAlchemy()
@@ -37,13 +35,14 @@ class Transportation(db.Model):
     #  2 == "Woring on it"
     #  3 == "Completed"
 
-    def __init__(self, citizenship, description, status = 1) -> None:
+    def __init__(self, id, citizenship, description, status = 1) -> None:
+        self.id = id
         self.citizenship = citizenship
         self.description = description
         self.status = status
 
     def __repr__(self) -> str:
-        return f"({self.id}, {self.citizenship}, {self.category}, {self.description}, {self.status})"
+        return f"({self.id}, {self.citizenship}, {self.description}, {self.status})"
 
 class Agriculture(db.Model):
     __tablename__ = "AGRICULTURE"
@@ -59,13 +58,14 @@ class Agriculture(db.Model):
     #  2 == "Woring on it"
     #  3 == "Completed"
 
-    def __init__(self, citizenship, description, status = 1) -> None:
+    def __init__(self, id, citizenship, description, status = 1) -> None:
+        self.id = id
         self.citizenship = citizenship
         self.description = description
         self.status = status
 
     def __repr__(self) -> str:
-        return f"({self.id}, {self.citizenship}, {self.category}, {self.description}, {self.status})"
+        return f"({self.id}, {self.citizenship}, {self.description}, {self.status})"
 
 class DrinkingWater(db.Model):
     __tablename__ = "DrinkingWater".upper()
@@ -81,13 +81,14 @@ class DrinkingWater(db.Model):
     #  2 == "Woring on it"
     #  3 == "Completed"
 
-    def __init__(self, citizenship, description, status = 1) -> None:
+    def __init__(self, id, citizenship, description, status = 1) -> None:
+        self.id = id
         self.citizenship = citizenship
         self.description = description
         self.status = status
 
     def __repr__(self) -> str:
-        return f"({self.id}, {self.citizenship}, {self.category}, {self.description}, {self.status})"
+        return f"({self.id}, {self.citizenship}, {self.description}, {self.status})"
 
 class Electricity(db.Model):
     __tablename__ = "Electricity".upper()
@@ -103,13 +104,14 @@ class Electricity(db.Model):
     #  2 == "Woring on it"
     #  3 == "Completed"
 
-    def __init__(self, citizenship, description, status = 1) -> None:
+    def __init__(self, id, citizenship, description, status = 1) -> None:
+        self.id = id
         self.citizenship = citizenship
         self.description = description
         self.status = status
 
     def __repr__(self) -> str:
-        return f"({self.id}, {self.citizenship}, {self.category}, {self.description}, {self.status})"
+        return f"({self.id}, {self.citizenship}, {self.description}, {self.status})"
 
 class Health(db.Model):
     __tablename__ = "Health".upper()
@@ -125,13 +127,14 @@ class Health(db.Model):
     #  2 == "Woring on it"
     #  3 == "Completed"
 
-    def __init__(self, citizenship, description, status = 1) -> None:
+    def __init__(self, id, citizenship, description, status = 1) -> None:
+        self.id = id
         self.citizenship = citizenship
         self.description = description
         self.status = status
 
     def __repr__(self) -> str:
-        return f"({self.id}, {self.citizenship}, {self.category}, {self.description}, {self.status})"
+        return f"({self.id}, {self.citizenship}, {self.description}, {self.status})"
 
 class Security(db.Model):
     __tablename__ = "Security".upper()
@@ -147,13 +150,14 @@ class Security(db.Model):
     #  2 == "Woring on it"
     #  3 == "Completed"
 
-    def __init__(self, citizenship, description, status = 1) -> None:
+    def __init__(self, id, citizenship, description, status = 1) -> None:
+        self.id = id
         self.citizenship = citizenship
         self.description = description
         self.status = status
 
     def __repr__(self) -> str:
-        return f"({self.id}, {self.citizenship}, {self.category}, {self.description}, {self.status})"
+        return f"({self.id}, {self.citizenship}, {self.description}, {self.status})"
 
 class Others(db.Model):
     __tablename__ = "Others".upper()
@@ -169,10 +173,11 @@ class Others(db.Model):
     #  2 == "Woring on it"
     #  3 == "Completed"
 
-    def __init__(self, citizenship, description, status = 1) -> None:
+    def __init__(self, id, citizenship, description, status = 1) -> None:
+        self.id = id
         self.citizenship = citizenship
         self.description = description
         self.status = status
 
     def __repr__(self) -> str:
-        return f"({self.id}, {self.citizenship}, {self.category}, {self.description}, {self.status})"
+        return f"({self.id}, {self.citizenship}, {self.description}, {self.status})"
