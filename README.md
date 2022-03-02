@@ -41,7 +41,7 @@ The end result of the project is the website with a clean and user-friendly inte
 ![er-diagram](/assets/er-diagram.png)
 
 ## For Developers
-To install all the dependencies:  
+To install all the dependencies using below command:  
 ```pip install -r requirements.txt```
 
 To run the server on local host:  
